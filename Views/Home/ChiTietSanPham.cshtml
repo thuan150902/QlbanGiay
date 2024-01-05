@@ -1,0 +1,251 @@
+﻿@model Nhom3_QLBanGiay.Models.SanPham
+@{
+    ViewData["Title"] = "ChiTietSanPham";
+    Layout = "~/Views/Shared/_LayoutShoes.cshtml";
+}
+
+<html lang="zxx">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Male-Fashion | Template</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder" style="display: none;">
+        <div class="loader" style="display: none;"></div>
+    </div>
+    <!-- Shop Details Section Begin -->
+    <section class="shop-details">
+        <div class="product__details__pic">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__details__breadcrumb">
+                            <a href="./index.html">Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>Product Details</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-3">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                            @foreach (var image in ViewBag.anhSanPham)
+                            {
+                                
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-1" role="tab">
+                                        <div class="product__thumb__pic set-bg" data-setbg="@Url.Content("../Products/Image/"+image.TenFileAnh)" style="background-image: url(&quot;../Shoes/img/shop-details/thumb-1.png&quot;);">
+                                        </div>
+                                    </a>
+                                
+                            }
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__pic__item">
+                                    <img src="@Url.Content("../Products/Image/"+Model.HinhAnhAvatar)" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product__details__content">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="product__details__text">
+                            <h4>@Model.TenSanPham</h4>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-o"></i>
+                                <span> - 5 Reviews</span>
+                            </div>
+                            <h3>@Model.GiaBan</h3>
+                            <p>
+                                Coat with quilted lining and an adjustable hood. Featuring long sleeves with adjustable
+                                cuff tabs, adjustable asymmetric hem with elastic side tabs and a front zip fastening
+                                with placket.
+                            </p>
+                            <div class="product__details__option">
+                                <div class="product__details__option__size">
+                                    <span>Size:</span>
+                                    @if (ViewData["SizeSP"] != null)
+                                    {
+                                        @foreach (var size in (List<String>)ViewData["SizeSP"])
+                                        {
+                                        <label for="@size">
+                                            @size
+                                            <input type="radio" id="@size">
+                                            </label>
+                                        }
+                                    
+                                    }
+                                </div>
+                                <div class="product__details__option__color">
+                                    <span>Color:</span>
+                                    <label class="c-1" for="sp-1">
+                                        <input type="radio" id="sp-1">
+                                    </label>
+                                    <label class="c-2" for="sp-2">
+                                        <input type="radio" id="sp-2">
+                                    </label>
+                                    <label class="c-3" for="sp-3">
+                                        <input type="radio" id="sp-3">
+                                    </label>
+                                    <label class="c-4" for="sp-4">
+                                        <input type="radio" id="sp-4">
+                                    </label>
+                                    <label class="c-9" for="sp-9">
+                                        <input type="radio" id="sp-9">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="product__details__cart__option">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <span class="fa fa-angle-up dec qtybtn"></span>
+                                        <input type="text" value="1">
+                                        <span class="fa fa-angle-down inc qtybtn"></span>
+                                    </div>
+                                </div>
+                                <a asp-action="AddToCart" asp-controller="Home" asp-route-maSanPham="@Model.MaSanPham" class="primary-btn">add to cart</a>
+                            </div>
+                            <div class="product__details__btns__option">
+                                <a href="#"><i class="fa fa-heart"></i> add to wishlist</a>
+                                <a href="#"><i class="fa fa-exchange"></i> Add To Compare</a>
+                            </div>
+                            <div class="product__details__last__option">
+                                <h5><span>Guaranteed Safe Checkout</span></h5>
+                                <img src="../Shoes/img/shop-details/details-payment.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__details__tab">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#tabs-5" role="tab">Mô tả</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">
+                                        Thông tin bổ sung
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">
+                                        Đánh giá
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tabs-5" role="tabpanel">
+                                    <div class="product__details__tab__content">
+                                        <p class="note">
+                                            Được thiết kế bởi Bruce Kilgore vào năm 1982 với ý tưởng đặt tên từ chiếc chuyên cơ chuyên chở tổng thống mỹ AIR FORCE ONE ,
+                                            AF1 đã nhanh chóng trở thành đôi giày mang tính cách mạng trong giới sneaker, sản phẩm được bán hết trong một thời gian kỷ lục. 
+                                            Cho dù đã gần 40 năm trôi qua NIKE AIR FORCE 1 vẫn đem lại hàng trăm triệu USD hàng năm cho NIKE.
+                                        </p>
+                                        <div class="product__details__tab__content__item">
+                                            <h5>Air Force 1</h5>
+                                            <p>
+                                                Air Force 1 là 1 trong những sneaker định hướng đầu tiên của Nike.
+                                                Đây sẽ luôn luôn là đôi giày thể thao bóng rổ đầu tiên có công nghệ đệm Air mang tính cách mạng của Swoosh bên trong gót chân của nó, và cũng là thử nghiệm đầu tiên của nó với kết cấu chống trượt 
+                                                – một quy trình vẫn được sử dụng cho đến ngày nay trong sản xuất giày thể thao.
+                                                Nhưng đáng chú ý nhất, AF1 sẽ là bước đột phá đầu tiên của nhà thiết kế huyền thoại Nike Bruce Kilgore vào thế giới thiết kế giày thể thao bóng rổ.
+                                            </p>
+                                            <p>
+                                                Nike Air Force 1 LV8 3 (GS) ‘White’  hiện đã có sẵn tại Sneaker Daily Shop, đừng bỏ lỡ cơ hội của mình nhé!
+                                                Cập nhật nhanh nhất lịch ra mắt của các mẫu giày mới nhất bằng cách theo dõi Sneaker Daily trên Facebook hoặc Instagram.
+                                                
+                                            </p>
+                                        </div>
+                                        <div class="product__details__tab__content__item">
+                                            <h5>Thông tin phát hành Nike Air Force 1 LV8 3 (GS) ‘White’</h5>
+                                            <p>
+                                                <p></p>
+                                                Thương hiệu: Nike
+
+                                                Thiết kế: Air Force 1
+
+                                                Mã sản phẩm:CJ4092-100
+
+                                                Xuất xứ: Mỹ
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tabs-6" role="tabpanel">
+                                    <div class="product__details__tab__content">
+                                        <div class="product__details__tab__content__item">
+                                            <h5>Thông tin </h5>
+                                            <p>
+
+                                                TRỌNG LƯỢNG	1 kg
+                                                
+                                            </p>
+                                            <p>
+                                                SIZE
+                                                36, 36.5, 37.5, 38, 38.5, 39, 40
+                                            </p>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tabs-7" role="tabpanel">
+                                    <div class="product__details__tab__content">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Details Section End -->
+    <!-- Search End -->
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.countdown.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/mixitup.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+
+</body>
+</html>
+
